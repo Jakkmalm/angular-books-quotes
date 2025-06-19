@@ -1,0 +1,59 @@
+/* Custom hamburger-toggler */
+.custom-toggler {
+    border: none; /* inga kanter */
+    background: transparent; /* ingen bakgrund */
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The three bars */
+.hamburger {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 18px;
+    cursor: pointer;
+}
+.bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent);
+    border-radius: 2px;
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+/* Placera bars */
+.bar:nth-child(1) {
+    top: 0;
+}
+.bar:nth-child(2) {
+    top: calc(50% - 1.5px);
+}
+.bar:nth-child(3) {
+    bottom: 0;
+}
+
+/* När knappen INTE har 'collapsed' (dvs menyn är öppen), animera till ett kryss */
+.custom-toggler:not(.collapsed) .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.custom-toggler:not(.collapsed) .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.custom-toggler:not(.collapsed) .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Optional: lite hover-feedback */
+.custom-toggler:hover .bar {
+    background-color: var(--accent);
+}
+

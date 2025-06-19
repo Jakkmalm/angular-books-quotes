@@ -1,0 +1,37 @@
+<!-- src/app/components/book-form/book-form.component.html -->
+<div class="container d-flex justify-content-center mt-5">
+    <!-- Byt ut “card” mot form-container (du kan behålla card-klassen om du vill) -->
+    <div class="form-container w-100" style="max-width: 500px;">
+        <!-- Header -->
+        <div class="card-header border-bottom mb-1">
+            <h3 class="mb-3">{{ isEdit ? 'Redigera bok' : 'Ny bok' }}</h3>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label class="form-label">Titel</label>
+                    <input formControlName="title" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Författare</label>
+                    <input formControlName="author" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Publicerad</label>
+                    <input type="date" formControlName="published" class="form-control" />
+                </div>
+
+                <div class="d-flex justify-content-end mt-4">
+                    <button class="btn btn-primary me-2" [disabled]="form.invalid">
+                        {{ isEdit ? 'Spara' : 'Skapa' }}
+                    </button>
+                    <button class="btn btn-secondary" type="button" (click)="cancel()">
+                        Avbryt
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

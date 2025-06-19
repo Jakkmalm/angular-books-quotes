@@ -1,0 +1,58 @@
+<!-- src/app/components/book-list/book-list.component.html -->
+<div class="container mt-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="page-title">Böcker</h2>
+        <button class="btn btn-success" routerLink="/books/new">
+            <i class="fas fa-plus me-1"></i> Lägg till ny bok
+        </button>
+    </div>
+
+    <!-- Spinner vid laddning -->
+    <ng-container *ngIf="loading; else cardsTpl">
+        <div class="text-center my-5">
+            <div class="loading-animation spinner-border" role="status">
+                <span class="visually-hidden">Laddar böcker...</span>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- Kort‐vy -->
+    <ng-template #cardsTpl>
+        <div *ngIf="books.length; else emptyTpl" class="row g-4">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center"
+                *ngFor="let b of books; let i = index">
+                <div class="card-custom" [ngStyle]="{
+        'background-image': [
+          'var(--card-gradient-1)',
+          'var(--card-gradient-2)',
+          'var(--card-gradient-3)'
+        ][i % 3]
+      }">
+                    <!-- Titel & författare -->
+                    <div class="card-content">
+                        <div class="card-title">{{ b.title }}</div>
+                        <div class="card-subtitle">{{ b.author }}</div>
+                    </div>
+
+                    <!-- Action-knappar längst ner -->
+                    <div class="card-actions">
+                        <button class="btn btn-sm btn-light" (click)="edit(b.id!)" aria-label="Redigera bok">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-light" (click)="delete(b.id!)" aria-label="Ta bort bok">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inga böcker -->
+        <ng-template #emptyTpl>
+            <div class="text-center text-muted mt-5">
+                Inga böcker att visa — klicka på “Lägg till ny bok” för att komma igång!
+            </div>
+        </ng-template>
+    </ng-template>
+</div>

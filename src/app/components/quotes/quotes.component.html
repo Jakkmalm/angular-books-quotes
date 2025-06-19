@@ -1,0 +1,15 @@
+<div class="container mt-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="page-title">Quotes</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center" *ngFor="let q of quotes; let i = index">
+            <div class="card-custom"
+                [ngStyle]="{ 'background-image': ['var(--card-gradient-3)', 'var(--card-gradient-1)', 'var(--card-gradient-2)'][i % 3] }">
+                <i class="fas fa-quote-left fa-2x mb-3"></i>
+                <p>{{ q }}</p>
+            </div>
+        </div>
+    </div>
+</div>

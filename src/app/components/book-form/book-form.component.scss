@@ -1,0 +1,26 @@
+/* book-form.component.scss */
+.form-container {
+    background-color: var(--bg-dark);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    margin: 2rem auto;
+    label {
+        color: var(--text-light);
+    }
+    .form-control {
+        background-color: var(--bg-input);
+        color: var(--text-light);
+        border: none;
+        &:focus {
+            background-color: var(--bg-input-focus);
+        }
+    }
+    .btn-primary {
+        background-color: var(--accent);
+        &:hover {
+            background-color: var(--accent-hover);
+        }
+    }
+}

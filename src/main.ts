@@ -1,6 +1,35 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+// src/main.ts
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+import { bootstrapApplication } from '@angular/platform-browser';
+import { importProvidersFrom } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
+import { AuthInterceptor } from './app/interceptors/auth.interceptor';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    // 1) Routing
+    provideRouter(routes),
+
+    // 2) HttpClient med interceptor plockad från DI
+    provideHttpClient(withInterceptorsFromDi()),
+
+    // 3) FormsModule & ReactiveFormsModule
+    importProvidersFrom(FormsModule, ReactiveFormsModule),
+
+    // 4) Registrera din AuthInterceptor
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+}).catch((err) => console.error(err));
