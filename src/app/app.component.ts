@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isMotion = scrollY > 100;  // ändra 100 till det pixelvärde du vill
+    this.isMotion = scrollY > 35;  // ändra till det pixelvärde du vill
   }
   // @HostListener lyssnar på scroll-händelsen och uppdaterar isMotion-flaggan
 
