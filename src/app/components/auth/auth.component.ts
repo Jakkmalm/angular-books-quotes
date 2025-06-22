@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService, LoginDto } from '../../services/auth.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class AuthComponent {
 
   constructor(
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   onSubmit(): void {
@@ -33,12 +35,13 @@ export class AuthComponent {
       this.auth.register(this.model.username, this.model.password).subscribe({
         next: (res) => {
           console.log('Register response:', res);
-          alert('Registrering lyckades! Du kan nu logga in.');
+          this.snackBar.open('Registrering lyckades! Du kan nu logga in.', 'Stäng', { duration: 3000 });
           this.isLoginMode = true;
+          this.router.navigate(['/login']);  // Navigera till inloggningssidan
         },
         error: (err) => {
           console.error('Register error:', err);
-          alert('Registreringen misslyckades.')
+          this.snackBar.open('Registreringen misslyckades.', 'Stäng', { duration: 3000 });
         }
       });
     }
