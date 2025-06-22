@@ -32,6 +32,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+
   /**
    * Loggar in användaren mot backend och sparar JWT i localStorage.
    */
@@ -39,6 +40,14 @@ export class AuthService {
     return this.http
       .post<AuthResponse>(`${this.apiUrl}/login`, dto)
       .pipe(tap((res) => localStorage.setItem(this.tokenKey, res.token)));
+  }
+
+  // Registrerar en ny användare mot backend.
+  register(username: string, password: string) {
+    return this.http.post(`${this.apiUrl}/users/register`, {
+      username,
+      password,
+    });
   }
 
   /**
