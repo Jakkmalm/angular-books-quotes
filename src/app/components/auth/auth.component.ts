@@ -31,11 +31,15 @@ export class AuthComponent {
       });
     } else {
       this.auth.register(this.model.username, this.model.password).subscribe({
-        next: () => {
+        next: (res) => {
+          console.log('Register response:', res);
           alert('Registrering lyckades! Du kan nu logga in.');
           this.isLoginMode = true;
         },
-        error: () => alert('Registreringen misslyckades.')
+        error: (err) => {
+          console.error('Register error:', err);
+          alert('Registreringen misslyckades.')
+        }
       });
     }
   }
