@@ -28,7 +28,7 @@ interface JwtPayload {
 export class AuthService {
   private readonly tokenKey = 'token';
   // private readonly apiUrl = 'https://localhost:7267/api/auth';
-  private readonly apiUrl = `${environment.apiBaseUrl}/auth`;
+  private readonly apiUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -38,7 +38,7 @@ export class AuthService {
    */
   login(dto: LoginDto): Observable<AuthResponse> {
     return this.http
-      .post<AuthResponse>(`${this.apiUrl}/login`, dto)
+      .post<AuthResponse>(`${this.apiUrl}/auth/login`, dto)
       .pipe(tap((res) => localStorage.setItem(this.tokenKey, res.token)));
   }
 
