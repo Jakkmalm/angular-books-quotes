@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:7267/api'
+  apiBaseUrl: 'https://bookquotesapi-jacob-h0bjcud7apejeea5.swedencentral-01.azurewebsites.net/api'
 };
