@@ -19,7 +19,7 @@ export class AuthComponent {
   };
 
   isLoginMode = true;
-  loading = false; // Flagga för att visa laddningsindikator
+  loading = true; // Flagga för att visa laddningsindikator
 
   constructor(
     private auth: AuthService,
