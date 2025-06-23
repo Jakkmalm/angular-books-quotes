@@ -42,13 +42,13 @@ export class AppComponent implements OnInit {
 
     if (scrollY > this.lastScrollTop) {
       // Scrollar nedåt
-      this.isMotion = scrollY > 35; // triggar när vi nått 35px nedåt
-    } else if (scrollY < this.lastScrollTop) {
+      this.isMotion = scrollY > 35;
+    } else {
       // Scrollar uppåt
-      this.isMotion = false; // tar bort motion direkt när man börjar scrolla upp
+      this.isMotion = scrollY > 100;
     }
 
-    this.lastScrollTop = scrollY <= 0 ? 0 : scrollY; // skydda mot negativa värden
+    this.lastScrollTop = scrollY <= 0 ? 0 : scrollY; // För Safari, scrollY kan bli negativ
   }
   // @HostListener lyssnar på scroll-händelsen och uppdaterar isMotion-flaggan
 
