@@ -19,7 +19,7 @@ export class AuthComponent {
   };
 
   isLoginMode = true;
-  loading = true; // Flagga för att visa laddningsindikator
+  loading = false; // Flagga för att visa laddningsindikator
 
   constructor(
     private auth: AuthService,
@@ -28,6 +28,7 @@ export class AuthComponent {
   ) {}
 
   onSubmit(): void {
+    this.loading = true; // Sätt flaggan till true när inloggning/registrering påbörjas
     if (this.isLoginMode) {
       this.auth.login(this.model).subscribe({
         next: () => {
