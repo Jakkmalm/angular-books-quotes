@@ -47,6 +47,17 @@ body {
     color: var(--text-color);
 }
 
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn {
+    //   outline: none;
+    border: none !important; /* Din färg */
+}
+
 /* Länk-stil */
 a {
     color: var(--accent);
@@ -198,5 +209,11 @@ h2.page-title {
     }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
