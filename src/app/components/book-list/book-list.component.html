@@ -9,13 +9,31 @@
     </div>
 
     <!-- Spinner vid laddning -->
-    <ng-container *ngIf="loading; else cardsTpl">
+    <ng-container *ngIf="loading; else contentTpl">
         <div class="text-center my-5">
             <div class="loading-animation spinner-border" role="status">
                 <span class="visually-hidden">Laddar böcker...</span>
             </div>
         </div>
     </ng-container>
+    
+    <!-- Huvudinnehåll när laddning är klar -->
+    <ng-template #contentTpl>
+        <ng-container *ngIf="hasError; else listTpl">
+            <div class="alert alert-danger text-center">
+                Något gick fel vid hämtning av dina böcker. Försök igen senare.
+            </div>
+        </ng-container>
+    </ng-template>
+
+    <!-- Lista eller tom-lista-meddelande -->
+    <ng-template #listTpl>
+        <ng-container *ngIf="books.length === 0; else cardsTpl">
+            <div class="alert alert-info text-center">
+                Du har ännu inte lagt till några böcker.
+            </div>
+        </ng-container>
+    </ng-template>
 
     <!-- Kort‐vy -->
     <ng-template #cardsTpl>

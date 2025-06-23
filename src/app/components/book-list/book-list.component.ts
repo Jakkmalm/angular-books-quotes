@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 export class BookListComponent implements OnInit {
   books: Book[] = [];
   loading = true; // Flagga för att visa laddningsindikator
+  hasError = false; // Flagga för att visa felmeddelande
   constructor(
     private bookService: BookService,
     public router: Router, // public så att du kan använda router.navigate(...) i templaten
@@ -38,6 +39,7 @@ export class BookListComponent implements OnInit {
         console.error('Kunde inte hämta böcker', err);
         this.toast.show('Kunde inte ladda böcker.', 'bg-danger text-white');
         this.loading = false; // ★
+        this.hasError = true
       },
     });
   }

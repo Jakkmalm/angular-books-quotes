@@ -1,6 +1,6 @@
 // src/app/app.component.ts
 
-import { Component, OnInit, HostListener  } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterOutlet, Router, RouterLink } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { ThemeService } from './services/theme.service';
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   isDark = false; // Flagga för att visa mörkt tema
 
   isMotion = false; // Flagga för att visa transparent header
+  lastScrollTop = 0; // För att hålla koll på senaste scroll-positionen
 
   constructor(
     public auth: AuthService,
@@ -25,10 +26,29 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {}
 
+  // @HostListener('window:scroll', [])
+  // onWindowScroll() {
+  //   const scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  //   this.isMotion = scrollY > 35;  // ändra till det pixelvärde du vill
+  // }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isMotion = scrollY > 35;  // ändra till det pixelvärde du vill
+    const scrollY =
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+
+    if (scrollY > this.lastScrollTop) {
+      // Scrollar nedåt
+      this.isMotion = scrollY > 35; // triggar när vi nått 35px nedåt
+    } else if (scrollY < this.lastScrollTop) {
+      // Scrollar uppåt
+      this.isMotion = false; // tar bort motion direkt när man börjar scrolla upp
+    }
+
+    this.lastScrollTop = scrollY <= 0 ? 0 : scrollY; // skydda mot negativa värden
   }
   // @HostListener lyssnar på scroll-händelsen och uppdaterar isMotion-flaggan
 
