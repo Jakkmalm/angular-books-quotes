@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
   isMotion = false; // Flagga för att visa transparent header
   lastScrollTop = 0; // För att hålla koll på senaste scroll-positionen
 
+  isMenuOpen = false;
+
   constructor(
     public auth: AuthService,
     private theme: ThemeService,
@@ -51,6 +53,18 @@ export class AppComponent implements OnInit {
     this.lastScrollTop = scrollY <= 0 ? 0 : scrollY; // För Safari, scrollY kan bli negativ
   }
   // @HostListener lyssnar på scroll-händelsen och uppdaterar isMotion-flaggan
+
+  ngAfterViewInit() {
+    const collapseEl = document.getElementById('nav');
+    if (collapseEl) {
+      collapseEl.addEventListener('shown.bs.collapse', () => {
+        document.body.style.overflow = 'hidden';
+      });
+      collapseEl.addEventListener('hidden.bs.collapse', () => {
+        document.body.style.overflow = '';
+      });
+    }
+  }
 
   ngOnInit() {
     this.theme.init();
