@@ -28,12 +28,7 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {}
 
-  // @HostListener('window:scroll', [])
-  // onWindowScroll() {
-  //   const scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
-  //   this.isMotion = scrollY > 35;  // ändra till det pixelvärde du vill
-  // }
-
+  // @HostListener lyssnar på scroll-händelsen och uppdaterar isMotion-flaggan
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const scrollY =
@@ -52,8 +47,8 @@ export class AppComponent implements OnInit {
 
     this.lastScrollTop = scrollY <= 0 ? 0 : scrollY; // För Safari, scrollY kan bli negativ
   }
-  // @HostListener lyssnar på scroll-händelsen och uppdaterar isMotion-flaggan
-
+  
+  // ngAfterViewInit används för att lägga till event listeners efter att vyn har initierats
   ngAfterViewInit() {
     const collapseEl = document.getElementById('nav');
     if (collapseEl) {

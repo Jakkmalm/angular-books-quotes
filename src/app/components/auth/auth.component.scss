@@ -2,11 +2,11 @@ label {
     color: var(--text-light);
 }
 .form-control {
-    background-color: #2b2b3d;
-    color: var(--text-light);
+    background-color: var(--bg-input);
+    color: var(--text-color);
     border: none;
     &:focus {
-        background-color: #3a3a4f;
+        background-color: var(--bg-input-focus);
     }
 }
 .btn-primary {
@@ -15,3 +15,19 @@ label {
         background-color: var(--accent-hover);
     }
 }
+
+
+
+.auth-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

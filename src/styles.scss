@@ -7,11 +7,11 @@
     --bg-color: #f0f2fa;
     --text-color: #212529;
     --text-muted: #6c757d;
-    --bg-input: #f3f3f3;
+    --bg-input: #fafafa;
     --bg-input-focus: #f3f3f3be;
     --accent: #0d6efd;
     --accent-hover: #0b5ed7;
-    /* Behåll samma gradient-färger som i din .dark-mode 
+    /* Behåll samma gradient-färger som i .dark-mode 
     --card-gradient-1: linear-gradient(135deg, #ffffff, #e9ecef);
     --card-gradient-2: linear-gradient(135deg, #f8f9fa, #dee2e6);
     --card-gradient-3: linear-gradient(135deg, #e9ecef, #ced4da);
@@ -53,9 +53,8 @@ body {
     box-shadow: none;
 }
 
-.btn {
-    //   outline: none;
-    border: none !important; /* Din färg */
+.btn-primary {
+    border: none !important;
 }
 
 /* Länk-stil */

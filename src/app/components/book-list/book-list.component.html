@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="page-title">Böcker</h2>
-        <button class="btn btn-success" routerLink="/books/new">
+        <button class="btn btn-primary" routerLink="/books/new">
             <i class="fas fa-plus me-1"></i> Lägg till ny bok
         </button>
     </div>
@@ -16,7 +16,7 @@
             </div>
         </div>
     </ng-container>
-    
+
     <!-- Huvudinnehåll när laddning är klar -->
     <ng-template #contentTpl>
         <ng-container *ngIf="hasError; else listTpl">

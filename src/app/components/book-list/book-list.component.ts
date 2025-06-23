@@ -39,7 +39,7 @@ export class BookListComponent implements OnInit {
         console.error('Kunde inte hämta böcker', err);
         this.toast.show('Kunde inte ladda böcker.', 'bg-danger text-white');
         this.loading = false; // ★
-        this.hasError = true
+        this.hasError = true;
       },
     });
   }

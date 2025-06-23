@@ -32,7 +32,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-
   /**
    * Loggar in användaren mot backend och sparar JWT i localStorage.
    */

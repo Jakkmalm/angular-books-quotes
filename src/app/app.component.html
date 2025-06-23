@@ -2,7 +2,7 @@
 <app-toasts></app-toasts>
 <nav class="navbar navbar-expand-md" [ngClass]="{'motion': isMotion}">
 
-  <div class="container-fluid" >
+  <div class="container-fluid">
     <a class="navbar-brand" routerLink="/books">BookQuotes</a>
 
     <!-- Custom toggler -->
@@ -22,9 +22,13 @@
         <li class="nav-item"><a class="nav-link" routerLink="/quotes">Mina citat</a></li>
       </ul>
       <div class="d-flex">
-        <button class="btn btn-outline-secondary me-2" (click)="toggleTheme()">
-          <i [ngClass]="{ 'fa-regular fa-moon': !isDark, 'fa fa-sun': isDark }"></i>
-        </button>
+        <label class="theme-toggle">
+          <input type="checkbox" [checked]="isDark" (change)="toggleTheme()" />
+          <span class="slider">
+            <i class="fa-solid fa-sun icon sun"></i>
+            <i class="fa-solid fa-moon icon moon"></i>
+          </span>
+        </label>
 
         <button class="btn btn-outline-danger" *ngIf="auth.isLoggedIn()" (click)="logout()">Logga ut</button>
       </div>
