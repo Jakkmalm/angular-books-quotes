@@ -37,7 +37,7 @@
 
     <!-- Kort‐vy -->
     <ng-template #cardsTpl>
-        <div *ngIf="books.length; else emptyTpl" class="row g-4">
+        <div *ngIf="books.length; else listTpl" class="row g-4">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center"
                 *ngFor="let b of books; let i = index">
                 <div class="card-custom" [ngStyle]="{
@@ -65,12 +65,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- Inga böcker -->
-        <ng-template #emptyTpl>
-            <div class="text-center text-muted mt-5">
-                Inga böcker att visa — klicka på “Lägg till ny bok” för att komma igång!
-            </div>
-        </ng-template>
     </ng-template>
 </div>

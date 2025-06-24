@@ -1,27 +1,51 @@
-<!-- src/app/app.component.html -->
 <app-toasts></app-toasts>
-<nav class="navbar navbar-expand-md" [ngClass]="{'motion': isMotion}">
 
+<nav class="navbar navbar-expand-md" [ngClass]="{'motion': isMotion}">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/books">BookQuotes</a>
 
-    <!-- Custom toggler -->
-    <button class="navbar-toggler custom-toggler collapsed d-md-none" type="button" data-bs-toggle="collapse"
-      data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="hamburger">
+    <!-- Hamburger -->
+    <button class="navbar-toggler custom-toggler d-md-none" type="button" (click)="toggleMenu()">
+      <span class="hamburger" [class.open]="isMenuOpen">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </span>
     </button>
 
-    <div class="collapse navbar-collapse" id="nav">
-      <!--meny… -->
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" routerLink="/books">Böcker</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/quotes">Mina citat</a></li>
+    <!-- Mobil meny -->
+    <!-- <div class="mobile-nav d-md-none" [class.show]="isMenuOpen">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" routerLink="/books" (click)="toggleMenu()">Böcker</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/quotes" (click)="toggleMenu()">Mina citat</a></li>
+        <li class="nav-item">
+          <label class="theme-toggle mt-2">
+            <input type="checkbox" [checked]="isDark" (change)="toggleTheme()" />
+            <span class="slider">
+              <i class="fa-solid fa-sun icon sun"></i>
+              <i class="fa-solid fa-moon icon moon"></i>
+            </span>
+          </label>
+        </li>
+        <li class="nav-item" *ngIf="auth.isLoggedIn()">
+          <button class="btn btn-outline-danger ms-2" (click)="logout(); toggleMenu()">Logga ut</button>
+        </li>
       </ul>
-      <div class="d-flex">
+    </div> -->
+
+    <!-- HAMBURGER OUTSIDE MOBILE-NAV -->
+
+
+    <div class="mobile-nav d-md-none" [class.show]="isMenuOpen">
+      <ul class="navbar-nav mt-4">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/books" (click)="toggleMenu()">Böcker</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/quotes" (click)="toggleMenu()">Mina citat</a>
+        </li>
+      </ul>
+      <div class="mobile-nav-header">
         <label class="theme-toggle">
           <input type="checkbox" [checked]="isDark" (change)="toggleTheme()" />
           <span class="slider">
@@ -30,7 +54,27 @@
           </span>
         </label>
 
-        <button class="btn btn-outline-danger" *ngIf="auth.isLoggedIn()" (click)="logout()">Logga ut</button>
+        <button class="btn btn-outline-danger logout-btn" *ngIf="auth.isLoggedIn()" (click)="logout(); toggleMenu()">
+          Logga ut
+        </button>
+      </div>
+    </div>
+
+    <!-- Desktop meny -->
+    <div class="d-none d-md-flex w-100 justify-content-between align-items-center">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" routerLink="/books">Böcker</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/quotes">Mina citat</a></li>
+      </ul>
+      <div class="d-flex align-items-center">
+        <label class="theme-toggle">
+          <input type="checkbox" [checked]="isDark" (change)="toggleTheme()" />
+          <span class="slider">
+            <i class="fa-solid fa-sun icon sun"></i>
+            <i class="fa-solid fa-moon icon moon"></i>
+          </span>
+        </label>
+        <button class="btn btn-outline-danger ms-2" *ngIf="auth.isLoggedIn()" (click)="logout()">Logga ut</button>
       </div>
     </div>
   </div>

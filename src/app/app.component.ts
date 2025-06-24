@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
 
     this.lastScrollTop = scrollY <= 0 ? 0 : scrollY; // För Safari, scrollY kan bli negativ
   }
-  
+
   // ngAfterViewInit används för att lägga till event listeners efter att vyn har initierats
   ngAfterViewInit() {
     const collapseEl = document.getElementById('nav');
@@ -59,6 +59,11 @@ export class AppComponent implements OnInit {
         document.body.style.overflow = '';
       });
     }
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    document.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
   }
 
   ngOnInit() {
